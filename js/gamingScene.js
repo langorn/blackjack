@@ -92,11 +92,13 @@ let stateUIManager = {
   'afterBet': () => {
     standBTN.setAlpha(1);
     hitBTN.setAlpha(1);
+    placeBetHintTXT.setVisible(false);
+  },
+  'afterHit': () => {
     token20.disableInteractive();
     token100.disableInteractive();
     token500.disableInteractive();
     token1000.disableInteractive();
-    placeBetHintTXT.setVisible(false);
   },
   'afterStand': () => {
     standBTN.setAlpha(0.2);
@@ -224,7 +226,7 @@ var cardUI = {
     if (GameRules.ourCard.length > 4) {
       return
     }
-
+    stateUIManager.afterHit();
     let position = GameRules.rules(2);
     let cardNo = position[0].cardNo;
     let cardImg = cardInfo[cardNo];
