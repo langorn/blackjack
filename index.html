@@ -1,0 +1,41 @@
+
+<html>
+<head>
+  <script src="//cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser.min.js"></script>
+  <style>
+  body {
+    background-color: black;
+  }
+</style>
+
+</head>
+<script type="module">
+
+import GamingScene from './js/gamingScene.js';
+import { GameRules } from './js/gameRule.js';
+import { MainMenuScene } from './js/mainMenuScene.js';
+
+var config = {
+  type: Phaser.AUTO,
+  backgroundColor: 'black',
+  // width: window.innerWidth, //1230,
+  // height: window.innerHeight, //660,
+  scale: {
+      parent: 'phaser-example',
+      mode: Phaser.Scale.FIT,
+      autoCenter: Phaser.Scale.CENTER_BOTH,
+      width: 1230,
+      height: 660
+  },
+  scene: [ MainMenuScene, GamingScene ]
+}
+// window.innerWidth, window.innerHeight
+var game = new Phaser.Game(config);
+
+</script>
+<body>
+
+    <div id="phaser-example"></div>
+
+</body>
+</html>

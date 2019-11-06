@@ -1,0 +1,172 @@
+
+<html>
+<head>
+  <script src="//cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser.min.js"></script>
+</head>
+<script>
+  var config = {
+    type: Phaser.AUTO,
+    width: 1100,
+    height: 600,
+    scene: {
+      preload: preload,
+      create: create,
+      update: update
+    }
+  }
+
+  var game = new Phaser.Game(config);
+
+  function preload ()
+  {
+      this.load.image('table', 'assets/casino/table.png');
+      this.load.image('ground', 'assets/casino/ground.png');
+
+      // our card
+      this.load.image('A1', 'assets/cards/A1.png');
+      this.load.image('A11', 'assets/cards/A11.png');
+
+      // their card
+      this.load.image('B1', 'assets/cards/B1.png');
+      this.load.image('B7', 'assets/cards/B7.png');
+
+      // dealer
+      this.load.image('dealer', 'assets/casino/dealer.jpg');
+
+      //players
+      // this.load.image('slim', 'assets/casino/player.png');
+      // this.load.spritesheet('dude', 'assets/casino/player.png', { frameWidth: 32, frameHeight: 48 });
+      this.load.spritesheet('dude', 'assets/casino/dude.png', { frameWidth: 32, frameHeight: 48 });
+      this.load.image('star', 'assets/casino/poker-chip.png');
+
+  }
+  var platform;
+  var player;
+  var cursors;
+  var stars;
+  var score = 0;
+  var scroreText;
+
+  function create()
+  {
+      this.add.image(550, 300, 'table')
+      this.add.image(570, 80, 'dealer').setScale(0.5)
+
+      let b = this.add.image(580, 200, 'A1').setScale(0.1)
+      this.add.image(690, 300, 'A11').setScale(0.1)
+
+      this.add.image(320, 150, 'B1').setScale(0.1)
+      this.add.image(360, 150, 'B7').setScale(0.1)
+
+      // var block = this.physics.add.image(400, 200, 'A1')
+      //     .setFriction(1, 1)
+      //     .setImmovable(true)
+      //     .setScale(0.1);
+      this.tweens.add({
+          targets: b,
+          x: 680,
+          y: 300,
+          duration:500,
+          ease: 'Linear',
+          repeat: 0,
+          yoyo: false
+      });
+      //
+      // platforms = this.physics.add.staticGroup();
+      // platforms.create(50, 570, 'ground')
+      // platforms.create(600, 570, 'ground').setScale(0.2).refreshBody();
+      // //player
+      // player = player = this.physics.add.sprite(100, 200, 'dude'); //this.physics.add.sprite(50,400, 'slim');
+      // this.physics.add.collider(player, platforms);
+      // player.setBounce(0,0);
+      // player.setCollideWorldBounds(true);
+      // player.body.setGravityY(500)
+      //
+      // //make a moveable
+      //
+      // this.anims.create({
+      //     key: 'left',
+      //     frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+      //     frameRate: 10,
+      //     repeat: -1
+      // });
+      //
+      // this.anims.create({
+      //     key: 'turn',
+      //     frames: [ { key: 'dude', frame: 4 } ],
+      //     frameRate: 20
+      // });
+      //
+      // this.anims.create({
+      //     key: 'right',
+      //     frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+      //     frameRate: 10,
+      //     repeat: -1
+      // });
+      // cursors = this.input.keyboard.createCursorKeys();
+      //
+      // this.physics.add.collider(player, platforms);
+      //
+      // stars = this.physics.add.group({
+      //     key: 'star',
+      //     repeat: 11,
+      //     setXY: { x: 12, y: 0, stepX: 70 }
+      // });
+      //
+      // stars.children.iterate(function (child) {
+      //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+      // });
+      //
+      // scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#CECECE'});
+
+      // this.physics.add.collider(player, platforms);
+      // this.physics.add.collider(stars, platforms);
+      //
+      // this.physics.add.overlap(player, stars, collectStar, null, this);
+
+  }
+
+  function update()
+  {
+    // if (cursors.left.isDown)
+    // {
+    //     player.setVelocityX(-160);
+    //
+    //     player.anims.play('left', true);
+    // }
+    // else if (cursors.right.isDown)
+    // {
+    //     player.setVelocityX(160);
+    //
+    //     player.anims.play('right', true);
+    // }
+    // else
+    // {
+    //     player.setVelocityX(0);
+    //
+    //     player.anims.play('turn');
+    // }
+    //
+    // if (cursors.up.isDown && player.body.touching.down)
+    // {
+    //     player.setVelocityY(-330);
+    // }
+    //
+    // if (cursors.up.isUp && player.body.touching.up)
+    // {
+    //     player.setVelocityY(330);
+    // }
+
+  }
+  function collectStar (player, star)
+  {
+      star.disableBody(true, true);
+      score += 10;
+      scoreText.setText('Score: ' + score);
+  }
+
+</script>
+<body>
+
+</body>
+</html>
